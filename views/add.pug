@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.container
+        form(action=`/${title}` method="post")
+            div.form-group
+                label(for="i-name")
+                input(type="text" class="form-control" id="i-name" name="name" placeholder="Isim Giriniz" maxlength="20")
+                if title === 'items'
+                    label(for="i-price")
+                    input(type="text" class="form-control" id="i-price" name="price" placeholder="Ucret Giriniz" maxlength="6")
+                    label(for="i-manu-id")
+                    input(type="text" class="form-control" id="i-manu-id" name="manufacturerId" placeholder="Tedarikci ID Giriniz" maxlength="5")
+            button(type="submit" class="btn btn-primary disabled" id="dugme") Submit
+    
+    if title === 'items'
+        script(src="/javascripts/price.js")
+    else
+        script(src="/javascripts/main.js")

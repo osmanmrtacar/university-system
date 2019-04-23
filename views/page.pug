@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    div.container
+        table.table
+            thead
+                tr
+                    th(scope="col") #
+                    th(scope="col") Isim
+                    if title === 'Items'
+                        th(scope="col") Ucret
+                        th(scope="col") Tedarikci
+                    if title !== 'repo'
+                        th(scope="col")
+                            a(href=`${title.toLowerCase()}/add`)
+                                i(class="material-icons") add
+            tbody
+                each val, index in data
+                  tr
+                    th(scope="row")= data[index]["id"]
+                    td=data[index]["name"]
+                    if title === 'Items'
+                        th(scope="row")= data[index]["price"]
+                        th(scope="row")= data[index]["manufacturer"]["name"]
+                    if title !== 'repo'    
+                        td
+                            form(action=`${title.toLowerCase()}/${data[index]["id"]}/delete` method="post")
+                                button(class="material-icons text-danger btn-link") delete
